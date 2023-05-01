@@ -1,5 +1,5 @@
 import { start } from "repl";
-import client from "../libs/prismadb";
+import prisma from "../libs/prismadb";
 
 export interface IListingsParams {
   userId?: string;
@@ -78,14 +78,14 @@ export default async function getListings(params: IListingsParams) {
       };
     }
 
-    const listings = await prisma?.listing.findMany({
+    const listings = await prisma.listing.findMany({
       where: query,
       orderBy: {
         createAt: "desc",
       },
     });
 
-    const safeListings = listings?.map((listing) => ({
+    const safeListings = listings.map((listing) => ({
       ...listing,
       createAt: listing.createAt.toISOString(),
     }));
