@@ -1,4 +1,3 @@
-import { start } from "repl";
 import prisma from "../libs/prismadb";
 
 export interface IListingsParams {
